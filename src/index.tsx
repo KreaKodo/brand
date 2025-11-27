@@ -1,0 +1,85 @@
+import { FC, useId } from 'react';
+
+export interface KreaKodoBrandProps {
+  /** Additional CSS classes */
+  className?: string;
+  /** Text size variant */
+  size?: 'sm' | 'md' | 'lg';
+}
+
+/**
+ * KreaKodo brand component with glitch effect.
+ * Self-contained - no external CSS required.
+ *
+ * @example
+ * ```tsx
+ * import { KreaKodoBrand } from '@kreakodo/brand';
+ *
+ * <footer>
+ *   <KreaKodoBrand size="sm" />
+ * </footer>
+ * ```
+ */
+export const KreaKodoBrand: FC<KreaKodoBrandProps> = ({
+  className = '',
+  size = 'sm',
+}) => {
+  const id = useId().replace(/:/g, '');
+
+  const fontSize = {
+    sm: '0.875rem',
+    md: '1.125rem',
+    lg: '1.5rem',
+  }[size];
+
+  return (
+    <>
+      <style>{`
+        .kb-${id} {
+          position: relative;
+          display: inline-block;
+          font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+          font-size: ${fontSize};
+          font-weight: 600;
+          color: #ddd;
+          letter-spacing: 0.05em;
+          background: transparent;
+        }
+        .kb-${id}::before,
+        .kb-${id}::after {
+          content: attr(data-text);
+          position: absolute;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: transparent;
+        }
+        .kb-${id}::before {
+          animation: kb-top-${id} 2s linear infinite;
+          clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+          -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+        }
+        .kb-${id}::after {
+          animation: kb-btm-${id} 3.5s linear infinite;
+          clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+          -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+        }
+        @keyframes kb-top-${id} {
+          2%, 64% { transform: translate(2px, -2px); }
+          4%, 60% { transform: translate(-2px, 2px); }
+          62% { transform: translate(13px, -1px) skew(-13deg); }
+        }
+        @keyframes kb-btm-${id} {
+          2%, 64% { transform: translate(-2px, 0); }
+          4%, 60% { transform: translate(-2px, 0); }
+          62% { transform: translate(-22px, 5px) skew(21deg); }
+        }
+      `}</style>
+      <span className={`kb-${id} ${className}`} data-text="KreaKodo">
+        KreaKodo
+      </span>
+    </>
+  );
+};
+
+export default KreaKodoBrand;
