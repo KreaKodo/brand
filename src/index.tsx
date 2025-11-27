@@ -5,6 +5,7 @@ export interface KreaKodoBrandProps {
   className?: string;
   /** Text size variant */
   size?: 'sm' | 'md' | 'lg';
+  color?: string;
 }
 
 /**
@@ -23,6 +24,7 @@ export interface KreaKodoBrandProps {
 export const KreaKodoBrand: FC<KreaKodoBrandProps> = ({
   className = '',
   size = 'sm',
+  color = '#ddd',
 }) => {
   const id = useId().replace(/:/g, '');
 
@@ -41,7 +43,7 @@ export const KreaKodoBrand: FC<KreaKodoBrandProps> = ({
           font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
           font-size: ${fontSize};
           font-weight: 600;
-          color: #ddd;
+          color: ${color};
           letter-spacing: 0.05em;
           background: transparent;
         }
