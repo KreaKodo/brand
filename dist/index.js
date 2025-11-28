@@ -13,7 +13,7 @@ import { useId } from 'react';
  * </footer>
  * ```
  */
-export const KreaKodoBrand = ({ className = '', size = 'sm', }) => {
+export const KreaKodoBrand = ({ className = '', size = 'sm', color = '#ddd', }) => {
     const id = useId().replace(/:/g, '');
     const fontSize = {
         sm: '0.875rem',
@@ -27,9 +27,10 @@ export const KreaKodoBrand = ({ className = '', size = 'sm', }) => {
           font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
           font-size: ${fontSize};
           font-weight: 600;
-          color: #ddd;
+          color: ${color};
           letter-spacing: 0.05em;
           background: transparent;
+          animation: kb-main-${id} 1s linear infinite;
         }
         .kb-${id}::before,
         .kb-${id}::after {
@@ -50,15 +51,20 @@ export const KreaKodoBrand = ({ className = '', size = 'sm', }) => {
           clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
           -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
         }
+        @keyframes kb-main-${id} {
+          2%, 64% { transform: translate(0.15em, 0) skew(0deg); }
+          4%, 60% { transform: translate(-0.15em, 0) skew(0deg); }
+          62% { transform: translate(0, 0) skew(5deg); }
+        }
         @keyframes kb-top-${id} {
-          2%, 64% { transform: translate(2px, -2px); }
-          4%, 60% { transform: translate(-2px, 2px); }
-          62% { transform: translate(13px, -1px) skew(-13deg); }
+          2%, 64% { transform: translate(0.15em, -0.15em); }
+          4%, 60% { transform: translate(-0.15em, 0.15em); }
+          62% { transform: translate(0.8em, -0.07em) skew(-13deg); }
         }
         @keyframes kb-btm-${id} {
-          2%, 64% { transform: translate(-2px, 0); }
-          4%, 60% { transform: translate(-2px, 0); }
-          62% { transform: translate(-22px, 5px) skew(21deg); }
+          2%, 64% { transform: translate(-0.15em, 0); }
+          4%, 60% { transform: translate(-0.15em, 0); }
+          62% { transform: translate(-1.4em, 0.3em) skew(21deg); }
         }
       ` }), _jsx("span", { className: `kb-${id} ${className}`, "data-text": "KreaKodo", children: "KreaKodo" })] }));
 };

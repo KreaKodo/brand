@@ -4,6 +4,7 @@ export interface KreaKodoBrandProps {
     className?: string;
     /** Text size variant */
     size?: 'sm' | 'md' | 'lg';
+    color?: string;
 }
 /**
  * KreaKodo brand component with glitch effect.

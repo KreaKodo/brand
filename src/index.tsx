@@ -39,14 +39,23 @@ export const KreaKodoBrand: FC<KreaKodoBrandProps> = ({
       <style>{`
         .kb-${id} {
           position: relative;
-          display: inline-block;
+          display: flex;
           font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
           font-size: ${fontSize};
           font-weight: 600;
           color: ${color};
           letter-spacing: 0.05em;
           background: transparent;
+          
         }
+
+        .kb-${id}.d1 {
+          animation: kb-main-${id} 1.7s linear infinite;
+        }
+        .kb-${id}.d2 {
+          animation: kb-main-${id} 2.5s linear infinite;
+        }
+
         .kb-${id}::before,
         .kb-${id}::after {
           content: attr(data-text);
@@ -57,29 +66,49 @@ export const KreaKodoBrand: FC<KreaKodoBrandProps> = ({
           background: transparent;
         }
         .kb-${id}::before {
-          animation: kb-top-${id} 2s linear infinite;
           clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
           -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+        }
+        .kb-${id}.d1::before {
+          animation: kb-top-${id} 2s linear infinite;
+        }
+        .kb-${id}.d2::before {
+          animation: kb-top-${id} 3.2s linear infinite;
         }
         .kb-${id}::after {
           animation: kb-btm-${id} 3.5s linear infinite;
           clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
           -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
         }
+        @keyframes kb-main-${id} {
+          2%, 64% { transform: translate(0.05em, 0) skew(0deg); }
+          4%, 60% { transform: translate(-0.025em, 0) skew(0deg); }
+          62% { transform: translate(0, 0) skew(5deg); }
+        }
         @keyframes kb-top-${id} {
-          2%, 64% { transform: translate(2px, -2px); }
-          4%, 60% { transform: translate(-2px, 2px); }
-          62% { transform: translate(13px, -1px) skew(-13deg); }
+          2%, 64% { transform: translate(0.05em, 0em); }
+          4%, 60% { transform: translate(-0.05em, 0em); }
+          62% { transform: translate(0.8em, -0.07em) skew(-13deg); }
         }
         @keyframes kb-btm-${id} {
-          2%, 64% { transform: translate(-2px, 0); }
-          4%, 60% { transform: translate(-2px, 0); }
-          62% { transform: translate(-22px, 5px) skew(21deg); }
+          2%, 64% { transform: translate(-0.02em, 0); }
+          4%, 60% { transform: translate(-0.02em, 0); }
+          62% { transform: translate(-0.6em, 0.1em) skew(21deg); }
         }
       `}</style>
-      <span className={`kb-${id} ${className}`} data-text="KreaKodo">
-        KreaKodo
-      </span>
+      <a
+        href="https://kreakodo.com"
+        target="_blank"
+        rel="noreferrer"
+        style={{ display: 'flex', gap: '0.3em', textDecoration: 'none' }}
+      >
+        <span className={`kb-${id} d1 ${className}`} data-text="Krea">
+          Krea
+        </span>
+        <span className={`kb-${id} d2 ${className}`} data-text="Kodo">
+          Kodo
+        </span>
+      </a>
     </>
   );
 };
