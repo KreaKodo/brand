@@ -1,4 +1,4 @@
-import { jsx as _jsx, Fragment as _Fragment, jsxs as _jsxs } from "react/jsx-runtime";
+import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
 import { useId } from 'react';
 /**
  * KreaKodo brand component with glitch effect.
@@ -23,15 +23,23 @@ export const KreaKodoBrand = ({ className = '', size = 'sm', color = '#ddd', }) 
     return (_jsxs(_Fragment, { children: [_jsx("style", { children: `
         .kb-${id} {
           position: relative;
-          display: inline-block;
+          display: flex;
           font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
           font-size: ${fontSize};
           font-weight: 600;
           color: ${color};
           letter-spacing: 0.05em;
           background: transparent;
-          animation: kb-main-${id} 1s linear infinite;
+          
         }
+
+        .kb-${id}.d1 {
+          animation: kb-main-${id} 1.7s linear infinite;
+        }
+        .kb-${id}.d2 {
+          animation: kb-main-${id} 2.5s linear infinite;
+        }
+
         .kb-${id}::before,
         .kb-${id}::after {
           content: attr(data-text);
@@ -42,9 +50,14 @@ export const KreaKodoBrand = ({ className = '', size = 'sm', color = '#ddd', }) 
           background: transparent;
         }
         .kb-${id}::before {
-          animation: kb-top-${id} 2s linear infinite;
           clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
           -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+        }
+        .kb-${id}.d1::before {
+          animation: kb-top-${id} 2s linear infinite;
+        }
+        .kb-${id}.d2::before {
+          animation: kb-top-${id} 3.2s linear infinite;
         }
         .kb-${id}::after {
           animation: kb-btm-${id} 3.5s linear infinite;
@@ -52,20 +65,20 @@ export const KreaKodoBrand = ({ className = '', size = 'sm', color = '#ddd', }) 
           -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
         }
         @keyframes kb-main-${id} {
-          2%, 64% { transform: translate(0.15em, 0) skew(0deg); }
-          4%, 60% { transform: translate(-0.15em, 0) skew(0deg); }
+          2%, 64% { transform: translate(0.05em, 0) skew(0deg); }
+          4%, 60% { transform: translate(-0.025em, 0) skew(0deg); }
           62% { transform: translate(0, 0) skew(5deg); }
         }
         @keyframes kb-top-${id} {
-          2%, 64% { transform: translate(0.15em, -0.15em); }
-          4%, 60% { transform: translate(-0.15em, 0.15em); }
+          2%, 64% { transform: translate(0.05em, 0em); }
+          4%, 60% { transform: translate(-0.05em, 0em); }
           62% { transform: translate(0.8em, -0.07em) skew(-13deg); }
         }
         @keyframes kb-btm-${id} {
-          2%, 64% { transform: translate(-0.15em, 0); }
-          4%, 60% { transform: translate(-0.15em, 0); }
-          62% { transform: translate(-1.4em, 0.3em) skew(21deg); }
+          2%, 64% { transform: translate(-0.02em, 0); }
+          4%, 60% { transform: translate(-0.02em, 0); }
+          62% { transform: translate(-0.6em, 0.1em) skew(21deg); }
         }
-      ` }), _jsx("span", { className: `kb-${id} ${className}`, "data-text": "KreaKodo", children: "KreaKodo" })] }));
+      ` }), _jsxs("a", { href: "https://kreakodo.com", target: "_blank", rel: "noreferrer", style: { display: 'flex', gap: '0.3em', textDecoration: 'none' }, children: [_jsx("span", { className: `kb-${id} d1 ${className}`, "data-text": "Krea", children: "Krea" }), _jsx("span", { className: `kb-${id} d2 ${className}`, "data-text": "Kodo", children: "Kodo" })] })] }));
 };
 export default KreaKodoBrand;
