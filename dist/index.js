@@ -25,10 +25,11 @@ export const KreaKodoBrand = ({ className = '', size = 'sm', color = '#ddd', }) 
           display: flex;
           gap: 0.3em;
           text-decoration: none;
+          transition: all .3s ease;
         }
 
         a.link-${id}:hover {
-          opacity: 0.7;
+          opacity: 0.85;
         }
 
         .kb-${id} {
