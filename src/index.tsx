@@ -37,6 +37,16 @@ export const KreaKodoBrand: FC<KreaKodoBrandProps> = ({
   return (
     <>
       <style>{`
+        a.link-${id} {
+          display: flex;
+          gap: 0.3em;
+          text-decoration: none;
+        }
+
+        a.link-${id}:hover {
+          opacity: 0.7;
+        }
+
         .kb-${id} {
           position: relative;
           display: flex;
@@ -46,7 +56,6 @@ export const KreaKodoBrand: FC<KreaKodoBrandProps> = ({
           color: ${color};
           letter-spacing: 0.05em;
           background: transparent;
-          
         }
 
         .kb-${id}.d1 {
@@ -100,7 +109,8 @@ export const KreaKodoBrand: FC<KreaKodoBrandProps> = ({
         href="https://kreakodo.com"
         target="_blank"
         rel="noreferrer"
-        style={{ display: 'flex', gap: '0.3em', textDecoration: 'none' }}
+        title="Coded by KreaKodo"
+        className={`link-${id}`}
       >
         <span className={`kb-${id} d1 ${className}`} data-text="Krea">
           Krea
