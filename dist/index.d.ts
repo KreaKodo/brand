@@ -1,7 +1,7 @@
 import { FC } from 'react';
 declare global {
     interface Window {
-        gtag?: (...args: unknown[]) => void;
+        gtag: (...args: unknown[]) => void;
     }
 }
 export interface KreaKodoBrandProps {
