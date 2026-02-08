@@ -1,5 +1,11 @@
 import { FC, useId } from 'react';
 
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
 export interface KreaKodoBrandProps {
   /** Additional CSS classes */
   className?: string;
@@ -27,6 +33,12 @@ export const KreaKodoBrand: FC<KreaKodoBrandProps> = ({
   color = '#ddd',
 }) => {
   const id = useId().replace(/:/g, '');
+
+  const handleClick = () => {
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+      window.gtag('event', 'kreakodo_brand_click');
+    }
+  };
 
   const fontSize = {
     sm: '0.875rem',
@@ -112,6 +124,7 @@ export const KreaKodoBrand: FC<KreaKodoBrandProps> = ({
         rel="noreferrer"
         title="Coded by KreaKodo"
         className={`link-${id}`}
+        onClick={handleClick}
       >
         <span className={`kb-${id} d1 ${className}`} data-text="Krea">
           Krea

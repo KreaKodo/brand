@@ -15,6 +15,11 @@ import { useId } from 'react';
  */
 export const KreaKodoBrand = ({ className = '', size = 'sm', color = '#ddd', }) => {
     const id = useId().replace(/:/g, '');
+    const handleClick = () => {
+        if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+            window.gtag('event', 'kreakodo_brand_click');
+        }
+    };
     const fontSize = {
         sm: '0.875rem',
         md: '1.125rem',
@@ -89,6 +94,6 @@ export const KreaKodoBrand = ({ className = '', size = 'sm', color = '#ddd', }) 
           4%, 60% { transform: translate(-0.02em, 0); }
           62% { transform: translate(-0.6em, 0.1em) skew(21deg); }
         }
-      ` }), _jsxs("a", { href: "https://kreakodo.com", target: "_blank", rel: "noreferrer", title: "Coded by KreaKodo", className: `link-${id}`, children: [_jsx("span", { className: `kb-${id} d1 ${className}`, "data-text": "Krea", children: "Krea" }), _jsx("span", { className: `kb-${id} d2 ${className}`, "data-text": "Kodo", children: "Kodo" })] })] }));
+      ` }), _jsxs("a", { href: "https://kreakodo.com", target: "_blank", rel: "noreferrer", title: "Coded by KreaKodo", className: `link-${id}`, onClick: handleClick, children: [_jsx("span", { className: `kb-${id} d1 ${className}`, "data-text": "Krea", children: "Krea" }), _jsx("span", { className: `kb-${id} d2 ${className}`, "data-text": "Kodo", children: "Kodo" })] })] }));
 };
 export default KreaKodoBrand;
